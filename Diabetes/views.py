@@ -11,52 +11,46 @@ from .models import Diabetes
 import sqlite3
 
 
-
-
-
-#Note : this function use RandomForestClassifier algorithm to predict the diabetes result
-@csrf_exempt 
+# Note : this function use RandomForestClassifier algorithm to predict the diabetes result
+@csrf_exempt
 def diabetesPredict(req):
-    if req.method=='POST':
-    #   dataFrame=pd.read_csv('Diabetes/dataset/diabetes.csv')
-    #   for i in range(len(dataFrame)):
-    #       data=Diabetes()
-    #       data.Pregnancies=dataFrame.values[i][0]
-    #       data.Glucose=dataFrame.values[i][1]
-    #       data.BloodPressure=dataFrame.values[i][2]
-    #       data.SkinThickness=dataFrame.values[i][3]
-    #       data.Insulin=dataFrame.values[i][4]
-    #       data.BMI=dataFrame.values[i][5]
-    #       data.DiabetesPedigreeFunction=dataFrame.values[i][6]
-    #       data.Age=dataFrame.values[i][7]
-    #       data.Outcome=dataFrame.values[i][8]
-    #       data.save()
-      conn = sqlite3.connect("db.sqlite3")  
-      a=pd.read_sql_query("select * from Diabetes_Diabetes ;",conn )
-     
-      
-      columns = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
-    #   labels = dataFrame['Outcome'].values
-      labels2=a['Outcome'].values
-      features2=a[list(columns)].values
-    #   features = dataFrame[list(columns)].values
-      X_train, X_test, y_train, y_test = train_test_split(features2, labels2, test_size=0.30)
-      clf = RandomForestClassifier(n_estimators=15)
-      clf = clf.fit(X_train, y_train)
-      acurecy=clf.score(X_train,y_train)
+    if req.method == 'POST':
+        #   dataFrame=pd.read_csv('Diabetes/dataset/diabetes.csv')
+        #   for i in range(len(dataFrame)):
+        #       data=Diabetes()
+        #       data.Pregnancies=dataFrame.values[i][0]
+        #       data.Glucose=dataFrame.values[i][1]
+        #       data.BloodPressure=dataFrame.values[i][2]
+        #       data.SkinThickness=dataFrame.values[i][3]
+        #       data.Insulin=dataFrame.values[i][4]
+        #       data.BMI=dataFrame.values[i][5]
+        #       data.DiabetesPedigreeFunction=dataFrame.values[i][6]
+        #       data.Age=dataFrame.values[i][7]
+        #       data.Outcome=dataFrame.values[i][8]
+        #       data.save()
+        conn = sqlite3.connect("db.sqlite3")
+        a = pd.read_sql_query("select * from Diabetes_Diabetes ;", conn)
 
-      body_unicode = req.body.decode('utf-8')
-      body = json.loads(body_unicode)
-      Predict=clf.predict(body['value'])
-    
-      obj={}
-      obj['result']=int(Predict[0])
-      obj['acurecy']=float(acurecy)
-      return JsonResponse(obj, safe=False)
+        columns = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
+                   'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+    #   labels = dataFrame['Outcome'].values
+        labels2 = a['Outcome'].values
+        features2 = a[list(columns)].values
+    #   features = dataFrame[list(columns)].values
+        X_train, X_test, y_train, y_test = train_test_split(
+            features2, labels2, test_size=0.30)
+        clf = RandomForestClassifier(n_estimators=15)
+        clf = clf.fit(X_train, y_train)
+        acurecy = clf.score(X_train, y_train)
+
+        body_unicode = req.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        Predict = clf.predict(body['value'])
+
+        obj = {}
+        obj['result'] = int(Predict[0])
+        obj['acurecy'] = float(acurecy)
+        return JsonResponse(obj, safe=False)
 
     else:
-       return JsonResponse('NO Result', safe=False)
-     
-
-
-
+        return JsonResponse('NO Result', safe=False)
