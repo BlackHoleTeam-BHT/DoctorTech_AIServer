@@ -16,7 +16,8 @@ def predicatBreastCancer(req):
     if req.method == 'POST':
         body_unicode = req.body.decode('utf-8')
         body = json.loads(body_unicode)
-        sample = body.features;
+        #  sample  that i want to to test it  that come from doctor
+        sample = body.features
         # get the data from dataset 
         df = pd.read_csv('BreastCancer/dataset/data.csv')
         df.head()
@@ -35,13 +36,7 @@ def predicatBreastCancer(req):
         yprdicat = clf.predict([sample])
         # get the accurcy
         accurcy = clf.score(X_train, y_train)
-       
-        # print(classification_report(y_train, yprdicat))
-        # print(confusion_matrix(y_train, yprdicat))
         print(accurcy)
         print(yprdicat)
         
-
-
-
         return HttpResponse-(body)
