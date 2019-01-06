@@ -1,3 +1,8 @@
 from django.contrib import admin
+from.models import WeightHeight,CaloriesDistance
 
-# Register your models here.
+
+
+
+admin.site.register(WeightHeight)
+admin.site.register(CaloriesDistance)
