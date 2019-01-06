@@ -83,5 +83,5 @@ def healthPredict(req):
 
       return JsonResponse(result, safe=False)
     else:
-      return JsonResponse('0')   
+      return JsonResponse('0', safe=False)   
 
