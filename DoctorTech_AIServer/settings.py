@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'Health.apps.HealthConfig',
+    'HeartAttack.apps.HeartattackConfig',
     'Diabetes.apps.DiabetesConfig',
     'BreastCancer.apps.BreastcancerConfig',
     'django.contrib.admin',
