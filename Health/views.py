@@ -36,7 +36,7 @@ def healthPredict(req):
       LinearDC=linear_model.LinearRegression()
       LinearDC.fit(DC_input,DC_target)
       AcurecyDC=LinearDC.score(DC_input, DC_target)
-      print(LinearDC.predict([[500]]),AcurecyDC)
+      print(LinearDC.predict([[772627]]),AcurecyDC)
       ##########Minimum-Wight######################################### 
       if len(dataFrameMW)<=0:
          dataFrameMW=pd.read_csv('Health/dataset/heightweight.csv')
