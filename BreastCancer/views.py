@@ -17,7 +17,7 @@ def predicatBreastCancer(req):
         body_unicode = req.body.decode('utf-8')
         body = json.loads(body_unicode)
         #  sample  that i want to to test it  that come from doctor
-        sample = body.features
+        sample = body['features']
         # get the data from dataset 
         df = pd.read_csv('BreastCancer/dataset/data.csv')
         df.head()
@@ -29,7 +29,7 @@ def predicatBreastCancer(req):
         # config the data to be ready to train and test
         X_train, X_test, y_train, y_test = train_test_split(features, label, test_size = 0.3)
         #  use RandomForestClassifier algorthim
-        clf = RandomForestClassifier(n_estimators= 50)
+        clf = RandomForestClassifier(n_estimators = 50)
         # train the alg
         clf = clf.fit(X_train, y_train)
         clf = clf.fit(X_test, y_test)
@@ -40,7 +40,7 @@ def predicatBreastCancer(req):
         print(yprdicat)
         data = {
             'predicate': int(yprdicat[0]),
-            'accurcy' : float(accurcy)
+            'accuracy' : float(accurcy * 100)
         }
         return JsonResponse (data, safe = False)
     else :

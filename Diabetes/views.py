@@ -41,19 +41,19 @@ def diabetesPredict(req):
         labels = dataFrame['Outcome'].values
         features = dataFrame[list(columns)].values
     #   features = dataFrame[list(columns)].values
-        X_train, X_test, y_train, y_test = train_test_split(
-            features, labels, test_size=0.30)
+        X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.30)
         clf = RandomForestClassifier(n_estimators=15)
         clf = clf.fit(X_train, y_train)
         acurecy = clf.score(X_train, y_train)
 
         body_unicode = req.body.decode('utf-8')
         body = json.loads(body_unicode)
+        print(body)
         Predict = clf.predict(body['value'])
 
         obj = {}
-        obj['result'] = int(Predict[0])
-        obj['acurecy'] = float(acurecy)
+        obj['predicate'] = int(Predict[0])
+        obj['accuracy'] = float(acurecy * 100)
         return JsonResponse(obj, safe=False)
 
     else:
