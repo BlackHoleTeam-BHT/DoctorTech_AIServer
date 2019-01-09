@@ -1,4 +1,4 @@
 from django.contrib import admin
+from.models import HeartAttack
 
-# Register your models here.
-# admin.site.register("Diabetes")
+admin.site.register(HeartAttack)
