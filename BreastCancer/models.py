@@ -10,4 +10,5 @@ class BreastCancer (models.Model):
     Leptin = models.DecimalField(max_digits=10, decimal_places=4)
     Adiponectin = models.DecimalField(max_digits=10, decimal_places=4)
     Resistin = models.DecimalField(max_digits=10, decimal_places=4)
-    MCP1 = models.DecimalField(max_digits=10, decimal_places=4)
+    MCP = models.DecimalField(max_digits=10, decimal_places=4)
+    Classification = models.DecimalField(max_digits=10, decimal_places=4)

@@ -34,11 +34,11 @@ def predicatHeartAttck(req):
                       data.restecg=df.values[i][6]
                       data.thalach=df.values[i][7]
                       data.exang=df.values[i][8]
-                      data.oldpeak=df.values[i][8]
-                      data.slop=df.values[i][8]
-                      data.ca=df.values[i][8]
-                      data.thal=df.values[i][8]
-                      data.pred_attribute=df.values[i][9]
+                      data.oldpeak=df.values[i][9]
+                      data.slop=df.values[i][10]
+                      data.ca=df.values[i][11]
+                      data.thal=df.values[i][12]
+                      data.pred_attribute=df.values[i][13]
                       data.save()
                     df= pd.read_sql_query("select * from HeartAttack_HeartAttack ;", conn)  
                 body_unicode = req.body.decode('utf-8')
