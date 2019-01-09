@@ -48,12 +48,12 @@ def diabetesPredict(req):
 
         body_unicode = req.body.decode('utf-8')
         body = json.loads(body_unicode)
-        print(body)
         Predict = clf.predict(body['value'])
 
         obj = {}
         obj['predicate'] = int(Predict[0])
         obj['accuracy'] = float(acurecy * 100)
+        print(obj)
         return JsonResponse(obj, safe=False)
 
     else:
